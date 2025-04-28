@@ -119,7 +119,7 @@
 
 import { useEffect, useState } from "react";
 import { menuItemsData } from "../hooks/fetchData";
-import MenuItemCard from "../components/DishCard";
+import MenuItemCard from "../components/Card";
 import SearchBar from "../components/SearchBar";
 
 export default function Home() {

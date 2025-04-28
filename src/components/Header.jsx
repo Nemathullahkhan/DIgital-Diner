@@ -16,12 +16,18 @@ export default function Header() {
             </div>
             <div className="flex items-center gap-6">
               <Link
-                href="/playground"
+                to="/home"
                 className="text-md font-medium text-zinc-400 hover:text-white transition-colors"
               >
-                Online IDE
+                Menu
               </Link>
-              <Link href="/auth/signin">
+              <Link
+                to="/checkout"
+                className="text-md font-medium text-zinc-400 hover:text-white transition-colors"
+              >
+                Checkout
+              </Link>
+              <Link to="/auth/signin">
                 <button className="rounded-full px-6 py-5 font-medium bg-white text-black hover:bg-zinc-200 transition-colors">
                   Sign In
                 </button>
