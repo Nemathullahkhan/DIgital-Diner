@@ -34,7 +34,10 @@ const reducer = (state, action) => {
         }
         return item;
       });
-    }
+    }case "CLEAR": {
+        let empArr = [];
+        return empArr;
+      }
     default:
       console.log("Error in reducer function");
       return state;

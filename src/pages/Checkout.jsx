@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useCart, useDispatchCart } from "../context/CartContext";
-import { Plus, Minus, Trash2 } from "lucide-react";
+import { Plus, Minus, Trash2, ShoppingCart } from "lucide-react";
+import { ConfirmOrder } from "../components/ConfirmOrder";
 
 const Checkout = () => {
   const cartItems = useCart();
@@ -20,7 +21,11 @@ const Checkout = () => {
       quantity: newQuantity,
       price: item.price,
     });
-    console.log("Updated cart in Checkout:", { id: item.id, name: item.name, quantity: newQuantity });
+    console.log("Updated cart in Checkout:", {
+      id: item.id,
+      name: item.name,
+      quantity: newQuantity,
+    });
   };
 
   // Handle quantity decrement
@@ -32,7 +37,10 @@ const Checkout = () => {
           type: "REMOVE",
           index,
         });
-        console.log("Removed from cart in Checkout:", { id: item.id, name: item.name });
+        console.log("Removed from cart in Checkout:", {
+          id: item.id,
+          name: item.name,
+        });
       } else {
         dispatch({
           type: "UPDATE",
@@ -40,7 +48,11 @@ const Checkout = () => {
           quantity: newQuantity,
           price: item.price,
         });
-        console.log("Updated cart in Checkout:", { id: item.id, name: item.name, quantity: newQuantity });
+        console.log("Updated cart in Checkout:", {
+          id: item.id,
+          name: item.name,
+          quantity: newQuantity,
+        });
       }
     }
   };
@@ -63,13 +75,18 @@ const Checkout = () => {
   // Handle empty cart
   if (!cartItems || cartItems.length === 0) {
     return (
-      <div className="p-4 text-center min-h-screen bg-gray-100">
-        <h2 className="text-xl font-semibold text-gray-800">
-          Your cart is empty
-        </h2>
-        <p className="text-gray-600 mt-2">
-          Add some items to your cart and come back!
-        </p>
+      <div className="flex items-center justify-center mt-12 bg-gray-100 p-4">
+        <div className="text-center max-w-md bg-white rounded-lg shadow-md p-8 tracking-tight">
+          <div className="flex justify-center">
+            <ShoppingCart className="w-16 h-16 text-emerald-900" />
+          </div>
+          <h2 className="text-xl font-semibold text-gray-800 mt-4">
+            Your cart is empty
+          </h2>
+          <p className="text-gray-600 text-md ">
+            Add some items to your cart and come back!
+          </p>
+        </div>
       </div>
     );
   }
@@ -169,6 +186,9 @@ const Checkout = () => {
           <h2 className="text-xl font-semibold text-gray-800">
             Total: ₹{totalPrice.toFixed(2)}
           </h2>
+        </div>
+        <div className="">
+          <ConfirmOrder />
         </div>
       </div>
     </div>
