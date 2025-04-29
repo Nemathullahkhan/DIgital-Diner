@@ -11,7 +11,7 @@ const reducer = (state, action) => {
         name: action.name,
         price: action.price,
         quantity: action.quantity,
-        image: action.image  // Changed from img to image for consistency
+        image: action.image 
       }];
     }
     case "REMOVE": {
@@ -45,8 +45,6 @@ const reducer = (state, action) => {
 };
 
 export const CartProvider = ({ children }) => {
-  // Initialize with an empty array
-  
   const [state, dispatch] = useReducer(reducer, [], () => {
     try {
       const storedCart = localStorage.getItem("cart");

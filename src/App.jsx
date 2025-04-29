@@ -3,21 +3,28 @@ import LandingPage from "./pages/LandingPage";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Checkout from "./pages/Checkout.jsx";
+import { SignUpPage } from "./pages/auth/SignUpPage.jsx";
+import SignInPage from "./pages/auth/SignInPage.jsx";
+import { OrderConfirmation } from "./pages/OrderConfirmation.jsx";
 import { MyOrders } from "./pages/MyOrders.jsx";
 
 function App() {
   return (
     <>
-      
-        <div className="min-h-screen bg-zinc-100">
+      <div className="min-h-screen bg-zinc-100">
         <Header />
-        <Routes >
+        <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/checkout" element={<Checkout/>} />
-          <Route path="/myorders" element={<MyOrders/>} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-confirmation" element={<OrderConfirmation />} />
+          <Route path="/myOrders" element={<MyOrders />} />
+
+          <Route path="/auth/signup" element={<SignUpPage />} />
+          <Route path="/auth/signin" element={<SignInPage />} />
+
         </Routes>
-        </div>
+      </div>
     </>
   );
 }

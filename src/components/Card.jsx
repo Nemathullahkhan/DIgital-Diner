@@ -9,7 +9,6 @@ const MenuItemCard = ({
   name,
   description,
   price,
-  category,
   image,
   ingredients,
   isVeg,
@@ -48,7 +47,13 @@ const MenuItemCard = ({
       });
       setQuantity(newQuantity);
       setIsInCart(true);
-      console.log("Added to cart:", { id: _id, name, price, quantity: newQuantity, image });
+      console.log("Added to cart:", {
+        id: _id,
+        name,
+        price,
+        quantity: newQuantity,
+        image,
+      });
     }
   };
 
@@ -62,7 +67,12 @@ const MenuItemCard = ({
         quantity: newQuantity,
         price,
       });
-      console.log("Updated cart:", { id: _id, name, price, quantity: newQuantity });
+      console.log("Updated cart:", {
+        id: _id,
+        name,
+        price,
+        quantity: newQuantity,
+      });
     } else {
       dispatch({
         type: "ADD",
@@ -73,7 +83,13 @@ const MenuItemCard = ({
         image,
       });
       setIsInCart(true);
-      console.log("Added to cart:", { id: _id, name, price, quantity: newQuantity, image });
+      console.log("Added to cart:", {
+        id: _id,
+        name,
+        price,
+        quantity: newQuantity,
+        image,
+      });
     }
   };
 
@@ -96,104 +112,112 @@ const MenuItemCard = ({
           quantity: newQuantity,
           price,
         });
-        console.log("Updated cart:", { id: _id, name, price, quantity: newQuantity });
+        console.log("Updated cart:", {
+          id: _id,
+          name,
+          price,
+          quantity: newQuantity,
+        });
       }
     }
   };
 
+  const VegIcon = () => (
+    <svg width="22" height="25" viewBox="0 0 100 100" >
+      <rect x="5" y="5" width="90" height="90" stroke="#00A651" fill="none" strokeWidth="5" />
+      <circle cx="50" cy="50" r="30" fill="#00A651" />
+    </svg>
+  );
+
+  const NonVegIcon = () => (
+    <svg width="22" height="25" viewBox="0 0 100 100" >
+      <rect x="5" y="5" width="90" height="90" stroke="#944A28" fill="none" strokeWidth="5" />
+      <circle cx="50" cy="50" r="30" fill="#944A28" />
+    </svg>
+  );
+  
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full border border-gray-100">
-      {/* Section 1: Image */}
-      <div className="relative h-36 w-full">
-        <img
-          src={image || "/api/placeholder/150/150"}
-          alt={name}
-          className="object-cover w-full h-full"
-        />
-        <div className="absolute top-2 left-2 bg-gray-800 text-white text-xs px-2 py-0.5 rounded-full">
-          {category}
-        </div>
-      </div>
-
-      {/* Section 2: Title and Price */}
-      <div className="p-3">
-        <div className="flex justify-between items-start">
-          <h3 className="text-base font-bold text-gray-800 line-clamp-1">
-            {name}
-          </h3>
-          <span className="text-sm font-semibold text-green-600">
-            ₹{price.toFixed(2)}
-          </span>
-        </div>
-      </div>
-
-      {/* Section 3: Description and Ingredients */}
-      <div className="px-3 pb-2 flex-grow">
-        <p className="text-xs text-gray-600 mb-2 line-clamp-2">{description}</p>
-
-        {ingredients && ingredients.length > 0 && (
-          <div className="mb-2">
-            <h4 className="text-xs font-semibold text-gray-700 mb-1">
-              Ingredients:
-            </h4>
-            <div className="flex flex-wrap gap-1">
-              {ingredients.map((ingredient, index) => (
-                <span
-                  key={index}
-                  className="text-xs bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full"
-                >
-                  {ingredient}
+    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full border border-gray-100 text-zinc-900">
+      <div className="p-2">
+        <div className="grid grid-cols-[60%_40%] gap-12">
+          <div className="flex flex-col justify-start pl-4">
+            <div className="flex items-center gap-1">
+              {isVeg ? (
+                <span className="py-0.5">
+                  <VegIcon/>
                 </span>
-              ))}
+              ):(
+                <span className="py-0.5">
+                  <NonVegIcon/>
+                </span>
+              )}
+              {isGlutenFree && (
+                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs px-1.5 py-0.5 rounded-full">
+                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-1"></span>
+                  GF
+                </span>
+              )}
+            </div>
+            <h1 className="text-xl font-bold tracking-tight">{name}</h1>
+            <h2 className="text-xl font-semibold  text-green-500 tracking-tighter">
+              ₹{price.toFixed(2)}
+            </h2>
+            <div className="">
+              <p className="text-sm text-gray-600 line-clamp-2">{description}</p>
+              {ingredients && ingredients.length > 0 && (
+                <div className="mb-2 mt-2">
+                  <h4 className="text-xs font-semibold text-gray-700 mb-1">Ingredients:</h4>
+                  <div className="flex flex-wrap gap-1">
+                    {ingredients.map((ingredient, index) => (
+                      <span
+                        key={index}
+                        className="text-xs bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full hover:bg-gray-300"
+                      >
+                        {ingredient}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        )}
-      </div>
-
-      {/* Section 4: Quantity Controls and Dietary Info */}
-      <div className="px-3 pb-3 mt-auto">
-        <div className="flex justify-between items-center">
-          <div className="flex gap-1.5">
-            {isVeg && (
-              <span className="inline-flex items-center bg-green-100 text-green-800 text-xs px-1.5 py-0.5 rounded-full">
-                <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1"></span>
-                Veg
-              </span>
-            )}
-            {isGlutenFree && (
-              <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs px-1.5 py-0.5 rounded-full">
-                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-1"></span>
-                GF
-              </span>
-            )}
-          </div>
-
-          <div className="flex items-center">
+          <div className="flex flex-col ">
+            <div className="w-40 h-36">
+              <img
+                src={image || "/api/placeholder/150/150"}
+                alt={name}
+                className="object-cover w-full h-full border-2 border-gray-900 rounded-2xl"
+              />
+            </div>
             {isInCart ? (
-              <div className="flex items-center bg-white border border-gray-300 rounded-md overflow-hidden shadow-sm">
+              <div className="-mt-6 flex mx-4  w-32 bg-white text-black border-gray-300 border-2 rounded-xl">
                 <button
                   onClick={decrementQuantity}
-                  className="px-3 py-1.5 text-gray-700 hover:bg-gray-100 transition-colors"
+                  className="px-3 py-1.5 font-bold text-gray-700 hover:bg-gray-100 transition-colors flex items-center justify-center"
                 >
                   <Minus size={16} />
                 </button>
-                <span className="px-4 py-1.5 text-sm font-medium text-gray-900">
+
+                <span className="flex-1 text-center px-2  text-xl font-semibold tracking-tight  text-gray-900">
                   {quantity}
                 </span>
+
                 <button
                   onClick={incrementQuantity}
-                  className="px-3 py-1.5 text-gray-700 hover:bg-gray-100 transition-colors"
+                  className="px-3 py-1.5 text-gray-700 hover:bg-gray-100 transition-colors flex items-center justify-center"
                 >
                   <Plus size={16} />
                 </button>
               </div>
             ) : (
-              <button
-                onClick={addToCart}
-                className="px-4 py-1.5 bg-green-500 text-white text-sm font-semibold rounded-md hover:bg-green-600 transition-colors flex items-center gap-1.5"
-              >
-                ADD
-              </button>
+              <div className="-mt-6 flex mx-4 ">
+                <button
+                  onClick={addToCart}
+                  className="px-2 py-1 bg-black  text-white text-md font-bold rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-gray-300 transition-colors flex justify-center items-center  w-32"
+                >
+                  ADD
+                </button>
+              </div>
             )}
           </div>
         </div>

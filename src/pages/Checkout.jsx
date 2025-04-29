@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useCart, useDispatchCart } from "../context/CartContext";
 import { Plus, Minus, Trash2, ShoppingCart } from "lucide-react";
 import { ConfirmOrder } from "../components/ConfirmOrder";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const cartItems = useCart();
@@ -86,29 +87,40 @@ const Checkout = () => {
           <p className="text-gray-600 text-md ">
             Add some items to your cart and come back!
           </p>
+          <Link to="/home">
+            <button className="mt-4 px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors font-semibold">
+              Continue Shopping
+            </button>
+          </Link>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="p-4 min-h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-        Your Cart
-      </h1>
+    <div className="p-2 min-h-screen bg-gray-100">
+      <div className="flex justify-center">
+        <div className="max-w-7xl w-full flex items-center gap-x-2">
+          <ShoppingCart className="w-8 h-8 text-emerald-900" />
+          <h1 className="text-2xl font-bold text-gray-800 tracking-tight">
+            Your Cart
+          </h1>
+        </div>
+      </div>
+      <div className="">
+        <ConfirmOrder />
+      </div>
       <div className="max-w-4xl mx-auto">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
+          <table className="min-w-full divide-y divide-gray-200 font-semibold">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   S No
                 </th>
+
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Image
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Item Name
+                  Item
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Price
@@ -133,28 +145,27 @@ const Checkout = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {index + 1}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+
+                  <td className="px-6 py-4 flex items-center gap-4 whitespace-nowrap text-md tracking-tight text-gray-900">
                     <img
                       src={item.image}
                       alt={item.name}
                       className="w-12 h-12 rounded-md object-cover"
                     />
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {item.name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     ₹{item.price.toFixed(2)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center bg-white border border-gray-300 rounded-md overflow-hidden shadow-sm">
+                    <div className="flex items-center bg-white border border-gray-300 rounded-md w-32">
                       <button
                         onClick={() => decrementQuantity(item, index)}
                         className="px-3 py-1.5 text-gray-700 hover:bg-gray-100 transition-colors"
                       >
                         <Minus size={16} />
                       </button>
-                      <span className="px-4 py-1.5 text-sm font-medium text-gray-900">
+                      <span className="px-4 py-1.5 text-md font-medium text-green-600">
                         {item.quantity}
                       </span>
                       <button
@@ -186,9 +197,6 @@ const Checkout = () => {
           <h2 className="text-xl font-semibold text-gray-800">
             Total: ₹{totalPrice.toFixed(2)}
           </h2>
-        </div>
-        <div className="">
-          <ConfirmOrder />
         </div>
       </div>
     </div>
