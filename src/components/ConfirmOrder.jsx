@@ -65,11 +65,11 @@ export const ConfirmOrder = () => {
         <button
           onClick={handleClick}
           disabled={isSubmitting || !cartItems || cartItems.length === 0}
-          className={`px-6 py-2 rounded-md text-white font-medium ${
+          className={`px-6 py-2 rounded-md text-white font-medium hover:scale-105 transition-all${
             isSubmitting || !cartItems || cartItems.length === 0
               ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700"
-          } transition-colors`}
+              : " bg-gradient-to-r from-emerald-600 to-emerald-500 text-white"
+          } `}
         >
           {isSubmitting ? "Processing..." : "Confirm Order"}
         </button>

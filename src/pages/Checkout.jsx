@@ -107,9 +107,7 @@ const Checkout = () => {
           </h1>
         </div>
       </div>
-      <div className="">
-        <ConfirmOrder />
-      </div>
+      
       <div className="max-w-4xl mx-auto">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200 font-semibold">
@@ -198,6 +196,9 @@ const Checkout = () => {
             Total: ₹{totalPrice.toFixed(2)}
           </h2>
         </div>
+        <div className="">
+        <ConfirmOrder />
+      </div>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useAuthStore } from '../store/authStore';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useAuthStore } from "../store/authStore";
+import axios from "axios";
 
 export const MyOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -19,10 +19,13 @@ export const MyOrders = () => {
         const response = await axios.post(`http://localhost:3000/order/get`, {
           userId: user.id,
         });
-        console.log('Response data:', response.data);
+        console.log("Response data:", response.data);
         setOrders(response.data.orders || []);
       } catch (error) {
-        console.error('Error fetching orders:', error.response?.data || error.message);
+        console.error(
+          "Error fetching orders:",
+          error.response?.data || error.message
+        );
       } finally {
         setLoading(false);
       }
@@ -41,7 +44,10 @@ export const MyOrders = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">My Orders</h1>
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold ">Welcome {user.name}, </h1>
+        <p className="text-xl mx-2 tracking-tight">Here are your orders</p>
+      </div>
 
       {loading ? (
         <div className="text-center text-gray-500">Loading orders...</div>
@@ -58,14 +64,14 @@ export const MyOrders = () => {
                 </h2>
                 <span
                   className={`text-sm font-medium px-3 py-1 rounded-full ${
-                    order.status === 'Delivered'
-                      ? 'bg-green-100 text-green-800'
-                      : order.status === 'Pending'
-                      ? 'bg-yellow-100 text-yellow-800'
-                      : 'bg-gray-100 text-gray-800'
+                    order.status === "Delivered"
+                      ? "bg-green-100 text-green-800"
+                      : order.status === "Pending"
+                      ? "bg-yellow-100 text-yellow-800"
+                      : "bg-gray-100 text-gray-800"
                   }`}
                 >
-                  {order.status || 'Unknown'}
+                  {order.status || "Unknown"}
                 </span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -74,14 +80,14 @@ export const MyOrders = () => {
                     <span className="font-medium">Order ID:</span> {order.id}
                   </p>
                   <p className="text-gray-600">
-                    <span className="font-medium">Date:</span>{' '}
+                    <span className="font-medium">Date:</span>{" "}
                     {order.createdAt
                       ? new Date(order.createdAt).toLocaleDateString()
-                      : 'N/A'}
+                      : "N/A"}
                   </p>
                   <p className="text-gray-600">
-                    <span className="font-medium">Total:</span>{' '}
-                    {order.total ? `$${order.total.toFixed(2)}` : 'N/A'}
+                    <span className="font-medium">Total:</span>{" "}
+                    {order.total ? `$${order.total.toFixed(2)}` : "N/A"}
                   </p>
                 </div>
                 <div>
@@ -91,7 +97,7 @@ export const MyOrders = () => {
                       <ul className="list-disc pl-5 text-gray-600">
                         {order.items.map((item, index) => (
                           <li key={index}>
-                            {item.name || 'Item'} x {item.quantity || 1}
+                            {item.name || "Item"} x {item.quantity || 1}
                           </li>
                         ))}
                       </ul>
