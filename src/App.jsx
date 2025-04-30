@@ -13,13 +13,12 @@ function App() {
       <div className="min-h-screen bg-zinc-100">
         <Header />
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/myOrders" element={<MyOrders />} />
           <Route path="/auth/signup" element={<SignUpPage />} />
           <Route path="/auth/signin" element={<SignInPage />} />
-
         </Routes>
       </div>
     </>
