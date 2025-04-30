@@ -154,7 +154,7 @@ const MenuItemCard = ({
               {isGlutenFree && (
                 <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs px-1.5 py-0.5 rounded-full">
                   <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-1"></span>
-                  GF
+                  Gluten-Free
                 </span>
               )}
             </div>
@@ -186,7 +186,7 @@ const MenuItemCard = ({
               <img
                 src={image || "/api/placeholder/150/150"}
                 alt={name}
-                className="object-cover w-full h-full border-2 border-gray-900 rounded-2xl"
+                className="object-cover w-full h-full  rounded-2xl"
               />
             </div>
             {isInCart ? (

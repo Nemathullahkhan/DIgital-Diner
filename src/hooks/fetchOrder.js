@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const fetchOrder = async (userId) => {
     try{
-        const response = await axios.get(`http://localhost:3000/order/${userId}`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/order/${userId}`, {
             headers: {
                 'Content-Type': 'application/json',
             },

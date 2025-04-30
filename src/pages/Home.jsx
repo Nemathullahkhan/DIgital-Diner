@@ -3,7 +3,7 @@ import { menuItemsData } from "../hooks/fetchData";
 import MenuItemCard from "../components/Card";
 import SearchBar from "../components/SearchBar";
 import { GiHamburgerMenu } from "react-icons/gi";
-
+import { Loader } from "../utils/Loader";
 
 export default function Home() {
   const [menuItems, setMenuItems] = useState([]);
@@ -62,8 +62,8 @@ export default function Home() {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center h-screen bg-stone-800">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="flex justify-center items-center h-[88vh] bg-gradient-to-b from-zinc-100/90 to-zinc-200 text-zinc-800 ">
+        <Loader/>
       </div>
     );
 

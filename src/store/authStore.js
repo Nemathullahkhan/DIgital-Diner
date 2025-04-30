@@ -40,7 +40,7 @@ export const useAuthStore = create((set) => ({
   signup: async (email, password, phone, name) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axios.post("http://localhost:3000/api/user", {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
         email,
         password,
         phone,
@@ -71,7 +71,7 @@ export const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/user/signinByPhone",
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/signinByPhone`,
         {
           phone,
         }
@@ -101,7 +101,7 @@ export const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
     try{
         const response = await axios.post(
-            "http://localhost:3000/api/user/signinEmail",
+            `${import.meta.env.VITE_BACKEND_URL}/api/user/signinEmail`,
             {
               email,password
             }
@@ -126,7 +126,7 @@ export const useAuthStore = create((set) => ({
   logout: async () => {
     set({ isLoading: true });
     try {
-      await axios.post("http://localhost:3000/api/user/signout");
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/signout`);
 
       // Clear localStorage
       clearLocalStorage();
@@ -150,7 +150,7 @@ export const useAuthStore = create((set) => ({
     set({ isCheckingAuth: true, error: null });
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/user/check-auth"
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/check-auth`
       );
 
       // Save to localStorage

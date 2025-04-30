@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuthStore } from "../store/authStore";
 import axios from "axios";
+import { Loader } from "../utils/Loader";
 
 export const MyOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -16,9 +17,12 @@ export const MyOrders = () => {
     const getOrders = async () => {
       try {
         setLoading(true);
-        const response = await axios.post(`http://localhost:3000/order/get`, {
-          userId: user.id,
-        });
+        const response = await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/order/get`,
+          {
+            userId: user.id,
+          }
+        );
         console.log("Response data:", response.data);
         setOrders(response.data.orders || []);
       } catch (error) {
@@ -50,7 +54,11 @@ export const MyOrders = () => {
       </div>
 
       {loading ? (
-        <div className="text-center text-gray-500">Loading orders...</div>
+        <div className="h-[68vh] align-middle ">
+          <div className="flex justify-center py-32">
+            <Loader />
+          </div>
+        </div>
       ) : orders.length > 0 ? (
         <div className="space-y-4">
           {orders.map((order) => (

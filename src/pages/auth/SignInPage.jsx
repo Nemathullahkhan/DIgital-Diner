@@ -33,7 +33,7 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-zinc-100/90 to-zinc-200">
+    <div className="h-[88vh] flex items-center justify-center bg-gradient-to-b from-zinc-100/90 to-zinc-200">
       <div className="bg-zinc-50 rounded-lg shadow-xl px-4 py-2  max-w-md w-full">
         <h2 className="text-3xl font-bold mb-3 text-center text-zinc-800 tracking-tighter">
           Welcome Back
