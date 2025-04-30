@@ -78,7 +78,7 @@ export const ConfirmOrder = () => {
               <span className="ml-2">Processing...</span>
             </div>
           ) : (
-            "Confirm Order"
+            "Checkout"
           )}
         </button>
       ) : (

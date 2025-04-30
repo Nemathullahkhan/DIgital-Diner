@@ -1,4 +1,4 @@
-import { UtensilsCrossed } from "lucide-react";
+import { ShoppingCart, User, UtensilsCrossed } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 import { useCart } from "../context/CartContext";
@@ -36,9 +36,10 @@ export default function Header() {
             </Link>
             <Link
               to="/checkout"
-              className="text-md font-medium hover:text-emerald-950 transition-colors relative"
+              className="text-md font-medium hover:text-emerald-950 transition-colors relative flex gap-x-1"
             >
-              Checkout
+              <ShoppingCart className="w-6 h-6" />
+              <span>Cart</span>
               {cartItemCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                   {cartItemCount}
@@ -54,10 +55,13 @@ export default function Header() {
             
             {isAuthenticated ? (
               <div className="flex items-center gap-4">
+                <div className="flex gap-x-1">
+                  <User className="w-5 h-5" />
                 <span className="text-md font-medium"> {user?.name || 'User'}</span>
+                </div>
                 <button 
                   onClick={logout}
-                  className="text-md font-medium hover:text-emerald-950 transition-colors"
+            className="text-md font-medium hover:text-emerald-950 transition-colors"
                 >
                   Logout
                 </button>
