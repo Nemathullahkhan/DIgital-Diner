@@ -6,6 +6,9 @@ A modern food ordering application built with React and Vite.
 
 Dining Diner is a full-featured restaurant ordering system that allows users to browse menu items, add them to cart, and place orders. The application includes user authentication, order tracking, and a responsive design for all device sizes.
 
+## Live Demo 
+ - [Digital Diner on Netlify](https://dining-diner.netlify.app)
+
 ## Features
 
 - **User Authentication**: Sign up and sign in functionality with both email/password and phone options
