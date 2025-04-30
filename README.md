@@ -53,6 +53,7 @@ npm run dev
 ```
 
 ## Project structure
+```text
 src/
 ├── assets/           # Static assets like images
 ├── components/       # Reusable UI components
@@ -87,3 +88,5 @@ src/
 ├── App.css           # Global styles
 ├── index.css         # Tailwind imports
 └── main.jsx          # Application entry point
+
+``` 
